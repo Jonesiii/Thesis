@@ -1,4 +1,3 @@
-import '../styles.css';
 import { ChatWindow } from './ChatWindow.js'
 
 function App() {
@@ -22,6 +21,7 @@ function App() {
 
   return (
     <div className="App">
+      <h3 className="title">React AI ChatBot</h3>
       <ChatWindow sendRequest={sendRequest} />
     </div>
   );
