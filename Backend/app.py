@@ -1,12 +1,13 @@
 import os
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
+from flask_cors import CORS
 from openai import OpenAI
-from dotenv import load_dotenv, dotenv_values
+from dotenv import load_dotenv
 
 load_dotenv()
 
-print(os.getenv("API_KEY"))
-print(os.getenv("ORGANIZATION"))
+#paths for the different frontends
+reactPath = "../Frontend/react-app/public"
 
 client = OpenAI(
   organization=os.getenv("ORGANZATION"),
@@ -15,19 +16,20 @@ client = OpenAI(
 )
 
 
-app = Flask(__name__, template_folder="../Frontend")
+app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
 
 # Define the route to return the index.html file
-@app.route("/")
-def index():
+# @app.route("/")
+# def index():
     # Specify the path to the index.html file relative to the frontend directory
-    return render_template("index.html")
+    # return render_template("index.html")
 
 # Define the /api route to handle POST requests
 @app.route("/api", methods=["POST"])
 def api():
     message = request.json.get("message")
-    print(message)
+    print("Received message:", message)
 
     # Send the message to OpenAI's API and receive the response
     completion = client.chat.completions.create(
@@ -39,9 +41,10 @@ def api():
     )
     if completion.choices[0].message is not None:
         response_text = completion.choices[0].message.content
-        return response_text
+        print("Response:", response_text)
+        return jsonify(response_text)
     else :
-        return 'Failed to generate response!'
+        return jsonify('Failed to generate response!')
     
 if __name__=='__main__':
     app.run(debug=True)
