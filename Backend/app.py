@@ -6,24 +6,14 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-#paths for the different frontends
-reactPath = "../Frontend/react-app/public"
-
 client = OpenAI(
   organization=os.getenv("ORGANZATION"),
   #project=os.getenv("PROJECT"),
   api_key=os.getenv("API_KEY"),
 )
 
-
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
-
-# Define the route to return the index.html file
-# @app.route("/")
-# def index():
-    # Specify the path to the index.html file relative to the frontend directory
-    # return render_template("index.html")
 
 # Define the /api route to handle POST requests
 @app.route("/api", methods=["POST"])
