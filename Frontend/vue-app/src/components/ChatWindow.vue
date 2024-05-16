@@ -5,6 +5,7 @@
         <strong>{{ chat.sender }}: </strong>{{ chat.message }}
       </div>
     </div>
+
     <div class="message-input-container">
       <textarea
         class="message-input"
@@ -19,6 +20,9 @@
 
 <script>
 export default {
+  props: {
+    sendRequest: Function
+  },
   data() {
     return {
       chatHistory: [],
@@ -26,22 +30,6 @@ export default {
     };
   },
   methods: {
-    async sendRequest(message) {
-      try {
-        const response = await fetch("http://localhost:5000/api", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({ message })
-        });
-        const data = await response.json();
-        return data;
-      } catch (error) {
-        console.error("Error:", error);
-        return 'Failed to generate response!';
-      }
-    },
     async handleSendMessage() {
       if (this.message.trim() === '') return;
       const response = await this.sendRequest(this.message);
