@@ -47,14 +47,6 @@ body {
   padding: 10px;
 }
 
-/* Highlighted code block */
-code {
-  background-color: #f8f8f8;
-  padding: 2px 4px;
-  border-radius: 4px;
-  font-size: 90%; /* Adjust font size as needed */
-}
-
 /* Style the message input and send button */
 .message-input-container {
   display: flex;
