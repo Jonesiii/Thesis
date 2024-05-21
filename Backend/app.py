@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 from openai import OpenAI
 from dotenv import load_dotenv
@@ -8,7 +8,7 @@ load_dotenv()
 
 client = OpenAI(
   organization=os.getenv("ORGANZATION"),
-  #project=os.getenv("PROJECT"),
+  #project=os.getenv("PROJECT"),  #use this only if your openAI-project is not the default project!
   api_key=os.getenv("API_KEY"),
 )
 
