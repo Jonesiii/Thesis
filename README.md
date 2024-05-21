@@ -7,6 +7,7 @@ This project has a Python back-end made with Flask and front-ends made with Angu
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install Flask.
 
 ```bash
+cd .\Backend\
 pip install Flask
 ```
 
