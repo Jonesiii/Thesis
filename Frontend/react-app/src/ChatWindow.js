@@ -42,7 +42,7 @@ export const ChatWindow = ({ sendRequest }) => {
           placeholder="Type your message here..."
           value={message}
           onChange={e => setMessage(e.target.value)}
-          onKeyPress={handleKeyPress}
+          onKeyDown={handleKeyPress}
         />
         <button className="send-button" onClick={handleSendMessage}>Send</button>
       </div>

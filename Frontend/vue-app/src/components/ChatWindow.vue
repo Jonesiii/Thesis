@@ -11,7 +11,7 @@
         class="message-input"
         placeholder="Type your message here..."
         v-model="message"
-        @keypress.enter="handleKeyPress"
+        @keypress.enter="handleSendMessage"
       ></textarea>
       <button class="send-button" @click="handleSendMessage">Send</button>
     </div>
@@ -42,11 +42,6 @@ export default {
       this.chatHistory.push({ sender: 'Bot', message: response });
       this.message = '';
     },
-    handleKeyPress(event) {
-      if (event.key === 'Enter') {
-        this.handleSendMessage();
-      }
-    }
   }
 };
 </script>
