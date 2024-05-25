@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-chat-window',
@@ -26,9 +25,7 @@ export class ChatWindowComponent {
   chatHistory: { sender: string, message: string | void }[] = [];
   message: string = '';
 
-  constructor(private http: HttpClient) {}
-
-  async sendMessage() {
+   async sendMessage() {
     if (!this.message.trim()) return;
     const startTime = performance.now();
     const response = await this.sendRequest(this.message);
