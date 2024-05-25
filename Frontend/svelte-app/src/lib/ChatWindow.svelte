@@ -6,7 +6,12 @@
 
   const handleSendMessage = async () => {
     if (message.trim() === '') return;
+    const startTime = performance.now();
     const response = await sendRequest(message);
+    const endTime = performance.now(); 
+    const responseTime = endTime - startTime; 
+
+    console.log('Time:', responseTime, '\nRes:', response);
     chatHistory = [
       ...chatHistory,
       { sender: 'You', message },

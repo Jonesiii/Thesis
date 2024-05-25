@@ -30,16 +30,13 @@ export class ChatWindowComponent {
 
   async sendMessage() {
     if (!this.message.trim()) return;
+    const startTime = performance.now();
+    const response = await this.sendRequest(this.message);
+    const endTime = performance.now(); 
+    const responseTime = endTime - startTime; 
 
-    console.log('Message to send:', this.message); 
-
-    try {
-      const response = await this.sendRequest(this.message);
-      this.chatHistory.push({ sender: 'You', message: this.message }, { sender: 'Bot', message: response });
-    } catch (error) {
-      console.error("Error:", error);
-      this.chatHistory.push({ sender: 'You', message: this.message }, { sender: 'Bot', message: 'Failed to generate response!' });
-    }
+    console.log('Time:', responseTime, '\nRes:', response);
+    this.chatHistory.push({ sender: 'You', message: this.message }, { sender: 'Bot', message: response });
 
     // Clear the message input
     this.message = '';

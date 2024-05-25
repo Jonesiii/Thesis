@@ -32,7 +32,12 @@ export default {
   methods: {
     async handleSendMessage() {
       if (this.message.trim() === '') return;
+      const startTime = performance.now();
       const response = await this.sendRequest(this.message);
+      const endTime = performance.now(); 
+      const responseTime = endTime - startTime; 
+
+      console.log('Time:', responseTime, '\nRes:', response);
       this.chatHistory.push({ sender: 'You', message: this.message });
       this.chatHistory.push({ sender: 'Bot', message: response });
       this.message = '';
