@@ -1,5 +1,6 @@
 import os
 import time
+import csv
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from openai import OpenAI
@@ -44,6 +45,11 @@ def api():
         # Calculate the backend processing time
         backend_processing_time = end_time - start_time
         print("Backend processing time:", backend_processing_time)
+        
+        # Write timings to a CSV file
+        with open('timings.csv', mode='a', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow([message, backend_processing_time])
 
         return jsonify(response_text)
     else:

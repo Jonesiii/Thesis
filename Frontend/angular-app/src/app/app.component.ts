@@ -18,7 +18,7 @@ export class AppComponent {
     this.sendRequest = async (message: string) => {
       try {
         const response = await this.http.post("http://localhost:5000/api", { message }).toPromise();
-        return response as string; // Assuming response is a string or can be converted to a string
+        return response as string;
       } catch (error) {
         console.error("Error:", error);
         return 'Failed to generate response!';
