@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "acorn": "^8.11.3",
+    "estree-halstead": "^0.4.0"
+  }
+}
